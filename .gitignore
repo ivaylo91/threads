@@ -1,5 +1,12 @@
 *.class
+out/
+src/com/clouway/practice/
+src/com/clouway/practice/*
+src/com/clouway/task2/
+src/com/clouway/task2/*
 
+.idea/workspace.xml
+.idea/vcs.xml
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
