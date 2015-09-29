@@ -9,7 +9,6 @@ public class Producer extends Thread {
 
     @Override
     public void run() {
-        System.out.println(list.size());
         try {
             while (true) {
                 putElement();
@@ -29,12 +28,12 @@ public class Producer extends Thread {
     }
 
     public synchronized String getMessage() throws InterruptedException {
-        notify();
         while (list.size() == 0) {
             wait();
         }
         String message = (String) list.getLast();
         list.remove();
+        notify();
         return message;
     }
 }
