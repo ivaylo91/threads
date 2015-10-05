@@ -31,11 +31,7 @@ public class ThreadCounter extends Thread {
         }
     }
 
-    public void startCounting(ThreadCounter thread){
+    public void setTarget(ThreadCounter thread){
         this.thread = thread;
-        if (!thread.isAlive()&&!this.isAlive()){
-            this.start();
-            thread.start();
-        }
     }
 }

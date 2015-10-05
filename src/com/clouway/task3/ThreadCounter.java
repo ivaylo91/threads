@@ -24,7 +24,6 @@ public class ThreadCounter extends Thread {
                     this.interrupt();
                     thread.interrupt();
                 }
-                sleep(200);
             } catch (InterruptedException e) {
                 this.interrupt();
             }
@@ -32,12 +31,8 @@ public class ThreadCounter extends Thread {
         }
     }
 
-    public void startCounting(ThreadCounter thread){
+    public void setTarget(ThreadCounter thread){
         this.thread = thread;
-        if (!thread.isAlive()&&!this.isAlive()){
-            this.start();
-            thread.start();
-        }
     }
 
     private synchronized void count() throws InterruptedException {
