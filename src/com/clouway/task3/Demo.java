@@ -8,5 +8,6 @@ public class Demo {
         ThreadCounter thread1 = new ThreadCounter("Thread(1)",8);
         ThreadCounter thread2 = new ThreadCounter("Thread(2)",5);
         thread2.startCounting(thread1);
+
     }
 }

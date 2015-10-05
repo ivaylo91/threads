@@ -4,22 +4,31 @@ package com.clouway.task4;
  * @author Slavi Dichkov (slavidichkof@gmail.com)
  */
 public class Remover extends Thread {
-    Producer producer;
+    private List list;
 
-    Remover(Producer p) {
-        producer = p;
+    public Remover(List list) {
+        this.list = list;
     }
 
     @Override
     public void run() {
+
         try {
             while (true) {
-                String message = producer.getMessage();
-                System.out.println("Got from list: " + message);
-                sleep(200);
+                sleep(1000);
+                System.out.println("Got from list: " + getMessage());
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+    public synchronized String getMessage() throws InterruptedException {
+        while (list.size() == 0) {
+            wait();
+        }
+        String message = (String) list.getLast();
+        list.remove();
+        notify();
+        return message;
     }
 }

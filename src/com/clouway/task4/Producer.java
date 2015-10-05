@@ -4,15 +4,21 @@ package com.clouway.task4;
  * @author Slavi Dichkov (slavidichkof@gmail.com)
  */
 public class Producer extends Thread {
-    private List list = new List(3);
+    private List list;
     public final int max = 3;
+    private final String name;
+
+    public Producer(List list, String name) {
+        this.list = list;
+        this.name = name;
+    }
 
     @Override
     public void run() {
         try {
             while (true) {
+                sleep(1000);
                 putElement();
-                sleep(2000);
             }
         } catch (InterruptedException e) {
         }
@@ -21,19 +27,10 @@ public class Producer extends Thread {
     private synchronized void putElement() throws InterruptedException {
         while (list.size() == max) {
             wait();
+        }if (list.size() != max){
+            list.add(name);
+            System.out.println("Put in list --> "+list.getLast());
         }
-        list.add(new java.util.Date().toString());
-        System.out.println("Put in list");
         notify();
-    }
-
-    public synchronized String getMessage() throws InterruptedException {
-        while (list.size() == 0) {
-            wait();
-        }
-        String message = (String) list.getLast();
-        list.remove();
-        notify();
-        return message;
     }
 }

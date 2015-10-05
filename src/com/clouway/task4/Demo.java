@@ -5,8 +5,13 @@ package com.clouway.task4;
  */
 public class Demo {
     public static void main(String[] args) {
-        Producer producer = new Producer();
+        List list=new List(3);
+        Producer producer = new Producer(list, "produser1");
+        Producer producer1 = new Producer(list, "produser2");
+        Remover remover=new Remover(list);
+        remover.start();
         producer.start();
-        new Remover(producer).start();
+        producer1.start();
+
     }
 }
