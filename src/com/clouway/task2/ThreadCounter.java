@@ -7,6 +7,7 @@ public class ThreadCounter extends Thread {
     public  int counter;
     private final String name;
     public final int max;
+    private ThreadCounter thread;
 
     public ThreadCounter(String name, int max) {
         this.name = name;
@@ -22,6 +23,7 @@ public class ThreadCounter extends Thread {
                 System.out.println(name+"- "+ counter);
                 if (this.counter ==this.max){
                     this.interrupt();
+                    thread.interrupt();
                 }
             } catch (InterruptedException e) {
                 this.interrupt();
@@ -30,21 +32,10 @@ public class ThreadCounter extends Thread {
     }
 
     public void startCounting(ThreadCounter thread){
-        this.start();
-        thread.start();
-        boolean thread1IsAlive = true;
-        boolean thread2IsAlive = true;
-        do {
-            if (thread1IsAlive && !thread.isAlive()) {
-                thread1IsAlive = false;
-                System.out.println("Thread 1 dead.");
-                this.interrupt();
-            }
-            if (thread2IsAlive && !this.isAlive()) {
-                thread2IsAlive = false;
-                System.out.println("Thread 2 dead.");
-                thread.interrupt();
-            }
-        } while(thread1IsAlive && thread2IsAlive);
+        this.thread = thread;
+        if (!thread.isAlive()&&!this.isAlive()){
+            this.start();
+            thread.start();
+        }
     }
 }
