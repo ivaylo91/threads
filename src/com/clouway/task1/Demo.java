@@ -7,7 +7,7 @@ import java.util.Scanner;
  */
 public class Demo {
     public static void main(String[] args) {
-        MyThreads mt=new MyThreads();
+        ThreadCounter mt=new ThreadCounter();
         mt.start();
         Scanner input=new Scanner(System.in);
         while (input.hasNext()){

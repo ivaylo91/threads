@@ -3,7 +3,7 @@ package com.clouway.task1;
 /**
  * @author Slavi Dichkov (slavidichkof@gmail.com)
  */
-public class MyThreads extends Thread {
+public class ThreadCounter extends Thread {
     private int counter;
 
     @Override
