@@ -8,12 +8,12 @@ public class ThreadCounter extends Thread {
 
     @Override
     public void run() {
-        while (!this.isInterrupted()) {
+        while (!isInterrupted()) {
             try {
                 sleep(1000);
                 counter++;
             } catch (InterruptedException e) {
-                 System.out.println(counter);
+                System.out.println(counter);
             }
 
         }

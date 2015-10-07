@@ -4,7 +4,7 @@ package com.clouway.task2;
  * @author Slavi Dichkov (slavidichkof@gmail.com)
  */
 public class ThreadCounter extends Thread {
-    public  int counter;
+    public int counter;
     private final String name;
     public final int max;
     private ThreadCounter thread;
@@ -16,22 +16,22 @@ public class ThreadCounter extends Thread {
 
     @Override
     public void run() {
-        while (!this.isInterrupted()){
+        while (!isInterrupted()) {
             try {
-                this.sleep((long)(3000*Math.random()));
+                sleep((long) (3000 * Math.random()));
                 counter++;
-                System.out.println(name+"- "+ counter);
-                if (this.counter ==this.max){
-                    this.interrupt();
+                System.out.println(name + "- " + counter);
+                if (this.counter == this.max) {
+                    interrupt();
                     thread.interrupt();
                 }
             } catch (InterruptedException e) {
-                this.interrupt();
+                interrupt();
             }
         }
     }
 
-    public void setTarget(ThreadCounter thread){
+    public void setTarget(ThreadCounter thread) {
         this.thread = thread;
     }
 }

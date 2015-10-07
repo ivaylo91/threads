@@ -3,8 +3,8 @@ package com.clouway.task4;
 /**
  * @author Slavi Dichkov (slavidichkof@gmail.com)
  */
-public class Remover extends Thread {
-    private List list;
+public final class Remover extends Thread {
+    private final List list;
 
     public Remover(List list) {
         this.list = list;
@@ -22,6 +22,7 @@ public class Remover extends Thread {
             e.printStackTrace();
         }
     }
+
     public synchronized String getMessage() throws InterruptedException {
         while (list.size() == 0) {
             wait();
