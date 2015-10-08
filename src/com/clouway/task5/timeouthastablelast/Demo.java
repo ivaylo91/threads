@@ -16,8 +16,10 @@ public class Demo {
         System.out.println(hashtable.get("gosho"));
         System.out.println();
         Thread.sleep(300);
+        hashtable.put("gosho", "gosho1");
         hashtable.put("ivan", "ivan");
         hashtable.print();
+        hashtable.remove("nikola");
         System.out.println();
         Thread.sleep(600);
         hashtable.print();

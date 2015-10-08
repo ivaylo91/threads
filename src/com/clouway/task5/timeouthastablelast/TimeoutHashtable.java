@@ -17,7 +17,13 @@ public class TimeoutHashtable {
     }
 
     public void put(String key, Object value) {
-        hashtableCleaner = new HashtableCleaner(value, new TimeoutRemover(this, key, timeOut));
+        if (elementsTabel.containsKey(key)) {
+            hashtableCleaner.restart();
+            elementsTabel.remove(key);
+            hashtableCleaner.setValue(value);
+        }else {
+            hashtableCleaner = new HashtableCleaner(value, new TimeoutRemover(this, key, timeOut));
+        }
         elementsTabel.put(key, hashtableCleaner);
     }
 
@@ -25,10 +31,9 @@ public class TimeoutHashtable {
         Object object = null;
         if (elementsTabel.containsKey(key)) {
             hashtableCleaner = (HashtableCleaner) elementsTabel.get(key);
-            object = hashtableCleaner.value;
-            hashtableCleaner.cancel();
+            object = hashtableCleaner.getValue();
+            hashtableCleaner.restart();
             elementsTabel.remove(key);
-            hashtableCleaner = new HashtableCleaner(hashtableCleaner.value, new TimeoutRemover(this, key, timeOut));
             elementsTabel.put(key, hashtableCleaner);
         }
         return object;
@@ -38,8 +43,7 @@ public class TimeoutHashtable {
         Object object = null;
         if (elementsTabel.containsKey(key)) {
             hashtableCleaner = (HashtableCleaner) elementsTabel.remove(key);
-            object = hashtableCleaner.value;
-            hashtableCleaner.cancel();
+            object = hashtableCleaner.getValue();
         }
         return object;
     }
@@ -50,7 +54,7 @@ public class TimeoutHashtable {
             while (it.hasNext()) {
                 Map.Entry entry = (Map.Entry) it.next();
                 hashtableCleaner = (HashtableCleaner) entry.getValue();
-                System.out.println(entry.getKey() + " --> " + hashtableCleaner.value);
+                System.out.println(entry.getKey() + " --> " + hashtableCleaner.getValue());
             }
         } else {
             System.out.println("  ");
