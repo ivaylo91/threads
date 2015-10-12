@@ -3,17 +3,17 @@ package com.clouway.task5.timeouthastablelast;
 /**
  * @author Slavi Dichkov (slavidichkof@gmail.com)
  */
-public class HashtableCleaner {
-    private Object value;
+public class HashtableCleaner<T> {
+    private T value;
     private final TimeoutRemover timeoutRemover;
 
-    public HashtableCleaner(Object value, TimeoutRemover timeoutRemover) {
+    public HashtableCleaner(T value, TimeoutRemover timeoutRemover) {
         this.value = value;
         this.timeoutRemover = timeoutRemover;
         timeoutRemover.start();
     }
 
-    public void setValue(Object value){
+    public void setValue(T value){
         this.value=value;
     }
 
@@ -21,7 +21,7 @@ public class HashtableCleaner {
         timeoutRemover.counter=0;
     }
 
-    public Object getValue() {
+    public T getValue() {
         return value;
     }
 }

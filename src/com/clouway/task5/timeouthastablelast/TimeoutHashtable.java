@@ -7,16 +7,16 @@ import java.util.Map;
 /**
  * @author Slavi Dichkov (slavidichkof@gmail.com)
  */
-public class TimeoutHashtable {
-    private Hashtable<String, Object> elementsTabel = new Hashtable<String, Object>();
-    private HashtableCleaner hashtableCleaner;
+public class TimeoutHashtable<T> {
+    private Hashtable<String, HashtableCleaner> elementsTabel = new Hashtable<String, HashtableCleaner>();
+    private HashtableCleaner<T> hashtableCleaner;
     private final long timeOut;
 
     public TimeoutHashtable(long timeOut) {
         this.timeOut = timeOut;
     }
 
-    public void put(String key, Object value) {
+    public void put(String key, T value) {
         if (elementsTabel.containsKey(key)) {
             hashtableCleaner.restart();
             elementsTabel.remove(key);
@@ -27,8 +27,8 @@ public class TimeoutHashtable {
         elementsTabel.put(key, hashtableCleaner);
     }
 
-    public Object get(String key) {
-        Object object = null;
+    public T get(String key) {
+        T object = null;
         if (elementsTabel.containsKey(key)) {
             hashtableCleaner = (HashtableCleaner) elementsTabel.get(key);
             object = hashtableCleaner.getValue();
@@ -39,8 +39,8 @@ public class TimeoutHashtable {
         return object;
     }
 
-    public Object remove(String key) {
-        Object object = null;
+    public T remove(String key) {
+        T object = null;
         if (elementsTabel.containsKey(key)) {
             hashtableCleaner = (HashtableCleaner) elementsTabel.remove(key);
             object = hashtableCleaner.getValue();
