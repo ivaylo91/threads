@@ -24,7 +24,8 @@ public class TimeoutRemover<K,V> extends Thread {
                 sleep(1);
                 counter++;
             }
-            table.remove(key);
+           table.remove(key);
+
         } catch (InterruptedException e) {
             table.remove(key);
         }
@@ -32,7 +33,6 @@ public class TimeoutRemover<K,V> extends Thread {
     public void setValue(V value){
         this.value=value;
     }
-
     public void restart(){
        this.counter=0;
     }

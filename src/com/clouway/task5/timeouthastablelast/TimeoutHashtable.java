@@ -8,8 +8,7 @@ import java.util.Map;
  * @author Slavi Dichkov (slavidichkof@gmail.com)
  */
 public class TimeoutHashtable<K,V> {
-    private Hashtable<K, TimeoutRemover> elementsTabel = new Hashtable<K, TimeoutRemover>();
-    private TimeoutRemover<K,V> timeoutRemover;
+    private Hashtable<K, TimeoutRemover<K,V>> elementsTabel = new Hashtable<>();
     private final long timeOut;
 
     public TimeoutHashtable(long timeOut) {
@@ -18,17 +17,20 @@ public class TimeoutHashtable<K,V> {
 
     public void put(K key, V value) {
         if (elementsTabel.containsKey(key)) {
+            TimeoutRemover<K,V> timeoutRemover=elementsTabel.get(key);
             timeoutRemover.restart();
             timeoutRemover.setValue(value);
         }else {
-            timeoutRemover = new TimeoutRemover<>(this, key,value, timeOut);
-            elementsTabel.put(key, timeoutRemover);
+            TimeoutRemover<K, V> remover = new TimeoutRemover<>(this, key, value, timeOut);
+            remover.start();
+            elementsTabel.put(key, remover);
         }
     }
 
     public V get(K key) {
         V object = null;
         if (elementsTabel.containsKey(key)) {
+            TimeoutRemover<K,V> timeoutRemover=elementsTabel.get(key);
             timeoutRemover = elementsTabel.get(key);
             object = timeoutRemover.getValue();
             timeoutRemover.restart();
@@ -39,8 +41,10 @@ public class TimeoutHashtable<K,V> {
     public V remove(K key) {
         V object = null;
         if (elementsTabel.containsKey(key)) {
-            timeoutRemover = elementsTabel.remove(key);
+            TimeoutRemover<K,V> timeoutRemover=elementsTabel.get(key);
+            timeoutRemover = elementsTabel.get(key);
             object = timeoutRemover.getValue();
+            elementsTabel.remove(key);
         }
         return object;
     }
@@ -50,12 +54,11 @@ public class TimeoutHashtable<K,V> {
             Iterator it = elementsTabel.entrySet().iterator();
             while (it.hasNext()) {
                 Map.Entry entry = (Map.Entry) it.next();
-                timeoutRemover = (TimeoutRemover) entry.getValue();
+                TimeoutRemover timeoutRemover = (TimeoutRemover) entry.getValue();
                 System.out.println(entry.getKey() + " --> " + timeoutRemover.getValue());
             }
         } else {
             System.out.println("  ");
         }
-
     }
 }
