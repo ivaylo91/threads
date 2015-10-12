@@ -42,9 +42,8 @@ public class TimeoutHashtable<K,V> {
         V object = null;
         if (elementsTabel.containsKey(key)) {
             TimeoutRemover<K,V> timeoutRemover=elementsTabel.get(key);
-            timeoutRemover = elementsTabel.get(key);
+            timeoutRemover =elementsTabel.remove(key);
             object = timeoutRemover.getValue();
-            elementsTabel.remove(key);
         }
         return object;
     }
