@@ -7,28 +7,28 @@ import java.util.Map;
 /**
  * @author Slavi Dichkov (slavidichkof@gmail.com)
  */
-public class TimeoutHashtable<T> {
-    private Hashtable<String, HashtableCleaner> elementsTabel = new Hashtable<String, HashtableCleaner>();
-    private HashtableCleaner<T> hashtableCleaner;
+public class TimeoutHashtable<K,V> {
+    private Hashtable<K, HashtableCleaner> elementsTabel = new Hashtable<K, HashtableCleaner>();
+    private HashtableCleaner<V> hashtableCleaner;
     private final long timeOut;
 
     public TimeoutHashtable(long timeOut) {
         this.timeOut = timeOut;
     }
 
-    public void put(String key, T value) {
+    public void put(K key, V value) {
         if (elementsTabel.containsKey(key)) {
             hashtableCleaner.restart();
             elementsTabel.remove(key);
             hashtableCleaner.setValue(value);
         }else {
-            hashtableCleaner = new HashtableCleaner(value, new TimeoutRemover(this, key, timeOut));
+            hashtableCleaner = new HashtableCleaner(value, new TimeoutRemover<K>(this, key, timeOut));
         }
         elementsTabel.put(key, hashtableCleaner);
     }
 
-    public T get(String key) {
-        T object = null;
+    public V get(K key) {
+        V object = null;
         if (elementsTabel.containsKey(key)) {
             hashtableCleaner = (HashtableCleaner) elementsTabel.get(key);
             object = hashtableCleaner.getValue();
@@ -39,8 +39,8 @@ public class TimeoutHashtable<T> {
         return object;
     }
 
-    public T remove(String key) {
-        T object = null;
+    public V remove(K key) {
+        V object = null;
         if (elementsTabel.containsKey(key)) {
             hashtableCleaner = (HashtableCleaner) elementsTabel.remove(key);
             object = hashtableCleaner.getValue();

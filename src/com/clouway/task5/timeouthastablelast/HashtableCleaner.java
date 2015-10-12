@@ -18,7 +18,7 @@ public class HashtableCleaner<T> {
     }
 
     public void restart(){
-        timeoutRemover.counter=0;
+        timeoutRemover.setCounter(0);
     }
 
     public T getValue() {

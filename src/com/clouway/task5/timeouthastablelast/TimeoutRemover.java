@@ -3,13 +3,17 @@ package com.clouway.task5.timeouthastablelast;
 /**
  * @author Slavi Dichkov (slavidichkof@gmail.com)
  */
-public class TimeoutRemover extends Thread {
+public class TimeoutRemover<K> extends Thread {
     private TimeoutHashtable table;
-    private final String key;
+    private final K key;
     private long timeOut;
-     long counter;
+    private long counter;
 
-    public TimeoutRemover(TimeoutHashtable table, String key, long timeOut) {
+    public void setCounter(long counter) {
+        this.counter = counter;
+    }
+
+    public TimeoutRemover(TimeoutHashtable table, K key, long timeOut) {
         this.table = table;
         this.key = key;
         this.timeOut = timeOut;
