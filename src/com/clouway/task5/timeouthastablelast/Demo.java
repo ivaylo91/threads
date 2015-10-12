@@ -7,7 +7,7 @@ import java.util.Date;
  */
 public class Demo {
     public static void main(String[] args) throws InterruptedException {
-        TimeoutHashtable<String,Date> hashtable=new TimeoutHashtable(1000);
+        TimeoutHashtable<String,Date> hashtable=new TimeoutHashtable<>(1000);
 
         hashtable.put("slavi",new Date());
         hashtable.put("gosho",new Date());
