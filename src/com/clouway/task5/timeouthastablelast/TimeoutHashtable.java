@@ -8,8 +8,8 @@ import java.util.Map;
  * @author Slavi Dichkov (slavidichkof@gmail.com)
  */
 public class TimeoutHashtable<K,V> {
-    private Hashtable<K, HashtableCleaner> elementsTabel = new Hashtable<K, HashtableCleaner>();
-    private HashtableCleaner<V> hashtableCleaner;
+    private Hashtable<K, TimeoutRemover> elementsTabel = new Hashtable<K, TimeoutRemover>();
+    private TimeoutRemover<K,V> timeoutRemover;
     private final long timeOut;
 
     public TimeoutHashtable(long timeOut) {
@@ -18,23 +18,23 @@ public class TimeoutHashtable<K,V> {
 
     public void put(K key, V value) {
         if (elementsTabel.containsKey(key)) {
-            hashtableCleaner.restart();
+            timeoutRemover.restart();
             elementsTabel.remove(key);
-            hashtableCleaner.setValue(value);
+            timeoutRemover.setValue(value);
         }else {
-            hashtableCleaner = new HashtableCleaner(value, new TimeoutRemover<K>(this, key, timeOut));
+            timeoutRemover = new TimeoutRemover<>(this, key,value, timeOut);
         }
-        elementsTabel.put(key, hashtableCleaner);
+        elementsTabel.put(key, timeoutRemover);
     }
 
     public V get(K key) {
         V object = null;
         if (elementsTabel.containsKey(key)) {
-            hashtableCleaner = (HashtableCleaner) elementsTabel.get(key);
-            object = hashtableCleaner.getValue();
-            hashtableCleaner.restart();
+            timeoutRemover = (TimeoutRemover) elementsTabel.get(key);
+            object = timeoutRemover.getValue();
+            timeoutRemover.restart();
             elementsTabel.remove(key);
-            elementsTabel.put(key, hashtableCleaner);
+            elementsTabel.put(key, timeoutRemover);
         }
         return object;
     }
@@ -42,8 +42,8 @@ public class TimeoutHashtable<K,V> {
     public V remove(K key) {
         V object = null;
         if (elementsTabel.containsKey(key)) {
-            hashtableCleaner = (HashtableCleaner) elementsTabel.remove(key);
-            object = hashtableCleaner.getValue();
+            timeoutRemover = (TimeoutRemover) elementsTabel.remove(key);
+            object = timeoutRemover.getValue();
         }
         return object;
     }
@@ -53,8 +53,8 @@ public class TimeoutHashtable<K,V> {
             Iterator it = elementsTabel.entrySet().iterator();
             while (it.hasNext()) {
                 Map.Entry entry = (Map.Entry) it.next();
-                hashtableCleaner = (HashtableCleaner) entry.getValue();
-                System.out.println(entry.getKey() + " --> " + hashtableCleaner.getValue());
+                timeoutRemover = (TimeoutRemover) entry.getValue();
+                System.out.println(entry.getKey() + " --> " + timeoutRemover.getValue());
             }
         } else {
             System.out.println("  ");
