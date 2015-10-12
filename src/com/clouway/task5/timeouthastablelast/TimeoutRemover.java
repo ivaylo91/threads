@@ -10,10 +10,6 @@ public class TimeoutRemover<K,V> extends Thread {
     private long timeOut;
     private long counter;
 
-    public void setCounter(long counter) {
-        this.counter = counter;
-    }
-
     public TimeoutRemover(TimeoutHashtable table, K key,V value, long timeOut) {
         this.table = table;
         this.key = key;

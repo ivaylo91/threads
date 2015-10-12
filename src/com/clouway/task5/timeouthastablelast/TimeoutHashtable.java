@@ -19,12 +19,11 @@ public class TimeoutHashtable<K,V> {
     public void put(K key, V value) {
         if (elementsTabel.containsKey(key)) {
             timeoutRemover.restart();
-            elementsTabel.remove(key);
             timeoutRemover.setValue(value);
         }else {
             timeoutRemover = new TimeoutRemover<>(this, key,value, timeOut);
+            elementsTabel.put(key, timeoutRemover);
         }
-        elementsTabel.put(key, timeoutRemover);
     }
 
     public V get(K key) {
@@ -33,8 +32,6 @@ public class TimeoutHashtable<K,V> {
             timeoutRemover = elementsTabel.get(key);
             object = timeoutRemover.getValue();
             timeoutRemover.restart();
-            elementsTabel.remove(key);
-            elementsTabel.put(key, timeoutRemover);
         }
         return object;
     }
