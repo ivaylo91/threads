@@ -14,6 +14,6 @@ public class Demo {
         if (input.hasNext()) {
             threadCounter.interrupt();
         }
-        System.out.println("Thread interrupted at: "+threadCounter.i+" second.");
+        System.out.println("Thread interrupted at: "+threadCounter.startTimeInSeconds +" second.");
     }
 }
