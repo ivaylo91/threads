@@ -5,7 +5,7 @@ package com.clouway.threadcounter;
  */
 public class ThreadCounter extends Thread {
 
-    public int startTimeInSeconds =0;
+    public int secondsPassed =0;
     public int stopTimeInSeconds;
 
     public ThreadCounter(int stopTimeInSeconds) {
@@ -14,9 +14,9 @@ public class ThreadCounter extends Thread {
 
     public void run() {
         try {
-            while (!interrupted() && startTimeInSeconds < stopTimeInSeconds) {
+            while (!interrupted() && secondsPassed < stopTimeInSeconds) {
                 sleep(1000);
-                startTimeInSeconds++;
+                secondsPassed++;
             }
         } catch (InterruptedException ie) {
             return;
