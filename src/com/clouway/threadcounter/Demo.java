@@ -7,13 +7,13 @@ import java.util.Scanner;
  */
 public class Demo {
     public static void main(String[] args) throws InterruptedException {
-        ThreadCounter threadCounter = new ThreadCounter(20);
-        threadCounter.start();
+        Counter counter = new Counter(20);
+        counter.start();
         Scanner input = new Scanner(System.in);
         System.out.println("Press any key:");
         if (input.hasNext()) {
-            threadCounter.interrupt();
+            counter.interrupt();
         }
-        System.out.println("Thread interrupted at: "+threadCounter.secondsPassed +" second.");
+        System.out.println("Thread interrupted at: "+ counter.secondsPassed +" second.");
     }
 }

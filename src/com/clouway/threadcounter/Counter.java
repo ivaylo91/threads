@@ -3,12 +3,12 @@ package com.clouway.threadcounter;
 /**
  * Created by clouway on 15-10-15.
  */
-public class ThreadCounter extends Thread {
+public class Counter extends Thread {
 
     public int secondsPassed =0;
     public int stopTimeInSeconds;
 
-    public ThreadCounter(int stopTimeInSeconds) {
+    public Counter(int stopTimeInSeconds) {
         this.stopTimeInSeconds = stopTimeInSeconds;
     }
 
