@@ -3,13 +3,13 @@ package com.clouway.doublethreadcounter;
 /**
  * Created by clouway on 15-10-19.
  */
-public class DoubleThreadCounter extends Thread {
+public class InterruptingThread extends Thread {
     private int counter = 0;
     private final int stopCounter;
-    private DoubleThreadCounter thread;
+    private InterruptingThread thread;
     private final String threadName;
 
-    public DoubleThreadCounter(String threadName, int stopCounter) {
+    public InterruptingThread(String threadName, int stopCounter) {
         this.threadName = threadName;
         this.stopCounter = stopCounter;
     }
@@ -27,7 +27,7 @@ public class DoubleThreadCounter extends Thread {
         }
     }
 
-    public void setThread(DoubleThreadCounter thread) {
+    public void setThread(InterruptingThread thread) {
         this.thread = thread;
     }
 }
