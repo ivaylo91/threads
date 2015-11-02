@@ -3,12 +3,12 @@ package com.clouway.synchronizedadderandremover;
 /**
  * Created by clouway on 15-11-2.
  */
-public class ListOfElements {
+public class SynchronizedList {
     private int index = 0;
     private Object[] objArray;
     private int size;
 
-    public ListOfElements(int size) {
+    public SynchronizedList(int size) {
         this.objArray = new Object[size];
         this.size = size;
     }

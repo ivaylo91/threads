@@ -5,10 +5,10 @@ package com.clouway.synchronizedadderandremover;
  */
 public class Demo {
     public static void main(String[] args) {
-        ListOfElements listOfElements = new ListOfElements(8);
-        ElementAdder elementAdder = new ElementAdder(listOfElements,"Element A");
-        ElementAdder elementAdder2 = new ElementAdder(listOfElements,"Element B");
-        ElementRemover elementRemover = new ElementRemover(listOfElements);
+        SynchronizedList synchronizedList = new SynchronizedList(8);
+        ElementAdder elementAdder = new ElementAdder(synchronizedList,"Element A");
+        ElementAdder elementAdder2 = new ElementAdder(synchronizedList,"Element B");
+        ElementRemover elementRemover = new ElementRemover(synchronizedList);
         elementAdder.start();
         elementAdder2.start();
         elementRemover.start();

@@ -4,10 +4,10 @@ package com.clouway.synchronizedadderandremover;
  * Created by clouway on 15-11-2.
  */
 public class ElementRemover extends Thread {
-    private final ListOfElements listOfElements;
+    private final SynchronizedList synchronizedList;
 
-    public ElementRemover(ListOfElements listOfElements){
-        this.listOfElements = listOfElements;
+    public ElementRemover(SynchronizedList synchronizedList){
+        this.synchronizedList = synchronizedList;
     }
 
     @Override
@@ -15,7 +15,7 @@ public class ElementRemover extends Thread {
         try{
             while(true){
                 sleep(1000);
-                listOfElements.removeElement();
+                synchronizedList.removeElement();
             }
         }catch (InterruptedException inEx){
             inEx.printStackTrace();
