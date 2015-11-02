@@ -5,12 +5,12 @@ package com.clouway.synchronizedadderandremover;
  */
 public class Demo {
     public static void main(String[] args) {
-        ArrayOfObjects arrayOfObjects = new ArrayOfObjects(8);
-        ObjectAdder objectAdder = new ObjectAdder(arrayOfObjects,"Object A");
-        ObjectAdder objectAdder2 = new ObjectAdder(arrayOfObjects,"Object B");
-        ObjectRemover objectRemover = new ObjectRemover(arrayOfObjects);
-        objectAdder.start();
-        objectAdder2.start();
-        objectRemover.start();
+        ListOfElements listOfElements = new ListOfElements(8);
+        ElementAdder elementAdder = new ElementAdder(listOfElements,"Element A");
+        ElementAdder elementAdder2 = new ElementAdder(listOfElements,"Element B");
+        ElementRemover elementRemover = new ElementRemover(listOfElements);
+        elementAdder.start();
+        elementAdder2.start();
+        elementRemover.start();
     }
 }
