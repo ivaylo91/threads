@@ -3,14 +3,14 @@ package com.clouway.timeouthashtable;
 /**
  * Created by clouway on 15-11-11.
  */
-public class EntryExisting<K, V> extends Thread {
+public class ExpiringEntry<K, V> extends Thread {
     private TimeoutHashtable timeoutHashtable;
     private long counter;
     private long timeout;
     private K key;
     private V value;
 
-    public EntryExisting(TimeoutHashtable timeoutHashtable, K key, V value, long timeout) {
+    public ExpiringEntry(TimeoutHashtable timeoutHashtable, K key, V value, long timeout) {
         this.timeoutHashtable = timeoutHashtable;
         this.key = key;
         this.value = value;
