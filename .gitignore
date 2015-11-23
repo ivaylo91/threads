@@ -2,6 +2,9 @@
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
+/out
+.idea/workspace.xml
+.idea/vcs.xml
 
 # Package Files #
 *.jar
