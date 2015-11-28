@@ -1,17 +1,17 @@
 package multithreadcounter;
 
 /**
- * Created by clouway on 11/20/15.
+ * Created by Ivaylo Penev(ipenev91@gmail.com)
  */
 public class App {
 
     public static void main(String[] args) {
 
-        MultiThreadCounter multiThreadCounter1 = new MultiThreadCounter("Thread -1", 1, 5);
-        MultiThreadCounter multiThreadCounter2 = new MultiThreadCounter("Thread -2", 6, 10);
+        Counter thread1 = new Counter("Thread-1", 1, 5);
+        Counter thread2 = new Counter("Thread-2", 6, 10);
 
-        multiThreadCounter1.start();
-        multiThreadCounter2.start();
+        thread1.start();
+        thread2.start();
 
     }
 }

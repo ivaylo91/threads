@@ -1,9 +1,9 @@
 package threadcounter;
 
 /**
- * Created by clouway on 11/20/15.
+ * Created by Ivaylo Penev(ipenev91@gmail.com)
  */
-public class ThreadCounter extends Thread {
+public class SimpleThread extends Thread {
 
     private int counter;
 
@@ -13,7 +13,7 @@ public class ThreadCounter extends Thread {
         if (isInterrupted()) {
             try {
                 counter++;
-                ThreadCounter.sleep(100);
+                SimpleThread.sleep(100);
             } catch (InterruptedException e) {
 
                 System.out.println(counter);
