@@ -2,7 +2,7 @@ package multithreadcounter;
 
 /**
  * Created by clouway on 11/25/15.
- */
+ **/
 public class App {
 
     public static void main(String[] args) {

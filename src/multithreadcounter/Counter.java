@@ -1,6 +1,7 @@
 package multithreadcounter;
 
 /**
+ *
  * Created by clouway on 11/25/15.
  */
 public class Counter extends Thread {
@@ -8,11 +9,12 @@ public class Counter extends Thread {
     private int start;
     private int end;
 
-    Counter(String threadname, int start, int end) {
+    public Counter(String threadname, int start, int end) {
 
         super(threadname);
         this.start = start;
         this.end = end;
+
     }
 
     @Override

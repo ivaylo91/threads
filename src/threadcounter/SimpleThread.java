@@ -1,7 +1,7 @@
 package threadcounter;
 
 /**
- * Created by clouway on 11/20/15.
+ * Created by Ivaylo Penev(ipenev91@gmail.com)
  */
 public class SimpleThread extends Thread {
 
