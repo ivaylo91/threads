@@ -20,10 +20,10 @@ public class Counter extends Thread {
         synchronized (counter) {
 
             for (int i = 1; i <= limit; i++) {
-
-                counter.notify();
+                
                 System.out.println(getName() + " -" + i);
-
+                counter.notify();
+                
                 try {
                     counter.wait();
                 } catch (InterruptedException e) {
