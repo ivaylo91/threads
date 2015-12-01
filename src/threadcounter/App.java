@@ -9,7 +9,7 @@ public class App {
 
     public static void main(String[] args) {
 
-        ThreadCounter threadCounter = new ThreadCounter();
+        SimpleThread threadCounter = new SimpleThread();
 
         Scanner input = new Scanner(System.in);
 
