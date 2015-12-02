@@ -5,28 +5,31 @@ package synchronizedthreads;
  */
 public class Counter extends Thread {
 
-    private final Object counter;
-    private int limit;
+    private int counter = 0;
+    private final Object lock;
 
-    public Counter(String name, int limit, Object counter) {
+    public Counter(String name, Object lock) {
         super(name);
-        this.limit = limit;
-        this.counter = counter;
+        this.lock = lock;
     }
-
+    
     @Override
     public void run() {
 
-        synchronized (counter) {
+        synchronized (lock) {
 
-            for (int i = 1; i <= limit; i++) {
-                
-                System.out.println(getName() + " -" + i);
-                counter.notify();
-                
+            for (int i = 1; i <=5; i++) {
+
+                counter++;
+
+                System.out.println(getName() + " -" + counter);
+
+                lock.notify();
+
                 try {
-                    counter.wait();
+                    lock.wait();
                 } catch (InterruptedException e) {
+
                     e.printStackTrace();
                 }
             }
