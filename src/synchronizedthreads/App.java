@@ -1,7 +1,7 @@
 package synchronizedthreads;
 
 /**
- * Created by clouway on 01.12.15.
+ * @author  Ivaylo Penev(ipenev91@gmail.com).
  */
 public class App {
 
