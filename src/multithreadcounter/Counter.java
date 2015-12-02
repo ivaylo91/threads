@@ -2,7 +2,7 @@ package multithreadcounter;
 
 /**
  *
- * Created by clouway on 11/25/15.
+ * @author Ivaylo Penev(ipenev91@gmail.com)
  */
 public class Counter extends Thread {
 

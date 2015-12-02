@@ -1,7 +1,7 @@
 package synchronizedthreads;
 
 /**
- * Created by clouway on 30.11.15.
+ * @author Ivaylo Penev(ipenev91@gmail.com)
  */
 public class Counter extends Thread {
 
