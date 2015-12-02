@@ -7,18 +7,20 @@ public class Counter extends Thread {
 
     private int counter = 0;
     private final Object lock;
+    private int limit;
 
-    public Counter(String name, Object lock) {
+    public Counter(String name, int limit, Object lock) {
         super(name);
         this.lock = lock;
+        this.limit = limit;
     }
-    
+
     @Override
     public void run() {
 
         synchronized (lock) {
 
-            for (int i = 1; i <=5; i++) {
+            for (int i = 1; i <= limit; i++) {
 
                 counter++;
 

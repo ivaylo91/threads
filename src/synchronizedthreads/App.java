@@ -1,7 +1,7 @@
 package synchronizedthreads;
 
 /**
- * @author  Ivaylo Penev(ipenev91@gmail.com).
+ * @author Ivaylo Penev(ipenev91@gmail.com).
  */
 public class App {
 
@@ -9,8 +9,8 @@ public class App {
 
         Object lock = new Object();
 
-        Counter thread1 = new Counter("Thread-1",lock);
-        Counter thread2 = new Counter("Thread-2",lock);
+        Counter thread1 = new Counter("Thread-1", lock);
+        Counter thread2 = new Counter("Thread-2", lock);
 
         thread1.start();
         thread2.start();
