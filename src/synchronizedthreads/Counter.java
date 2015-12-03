@@ -5,12 +5,15 @@ package synchronizedthreads;
  */
 public class Counter extends Thread {
 
+    private final int start;
+    private final int limit;
     private int counter = 0;
-    private final Object lock;
-    private int limit;
+    private Object lock;
 
-    public Counter(String name, int limit, Object lock) {
-        super(name);
+
+    public Counter(int start, int limit, Object lock) {
+
+        this.start = start;
         this.lock = lock;
         this.limit = limit;
     }
@@ -20,7 +23,7 @@ public class Counter extends Thread {
 
         synchronized (lock) {
 
-            for (int i = 1; i <= limit; i++) {
+            for (int i = start; i <= limit; i++) {
 
                 counter++;
 
@@ -28,12 +31,18 @@ public class Counter extends Thread {
 
                 lock.notify();
 
+                if (counter == limit) {
+
+                    break;
+                }
                 try {
                     lock.wait();
                 } catch (InterruptedException e) {
 
                     e.printStackTrace();
                 }
+
+                Thread.interrupted();
             }
         }
     }
