@@ -8,7 +8,7 @@ public class Counter extends Thread {
     private final int start;
     private final int limit;
     private int counter = 0;
-    private Object lock;
+    private final Object lock;
 
 
     public Counter(int start, int limit, Object lock) {
