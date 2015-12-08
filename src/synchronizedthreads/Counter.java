@@ -4,13 +4,14 @@ package synchronizedthreads;
  * @author Ivaylo Penev(ipenev91@gmail.com)
  */
 public class Counter extends Thread {
-
+    private int start;
     private int limit;
     private int counter = 0;
     private final Object lock;
 
 
-    public Counter(int limit, Object lock) {
+    public Counter(int start, int limit, Object lock) {
+        this.start = start;
         this.limit = limit;
         this.lock = lock;
     }
@@ -22,7 +23,8 @@ public class Counter extends Thread {
 
             synchronized (lock) {
 
-                if (counter != limit) {
+                for (int i = start; i <= limit; i++) {
+                /*if (counter != limit) {*/
 
                     counter++;
 
