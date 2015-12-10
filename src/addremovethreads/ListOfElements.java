@@ -49,6 +49,7 @@ public class ListOfElements {
         index--;
         array[index] = null;
         notify();
+        
     }
 
    /* public synchronized void printAllElements() {
