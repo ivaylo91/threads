@@ -15,7 +15,8 @@ public class RemoveElement extends Thread {
 
     @Override
     public void run() {
-        while (!isInterrupted()) {
+        while (!Thread.currentThread().isInterrupted()) {
+
             System.out.println("Removed" + "->" + obj);
             listOfElements.remove();
         }

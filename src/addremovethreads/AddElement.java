@@ -15,9 +15,11 @@ public class AddElement extends Thread {
 
     @Override
     public void run() {
-        while (!isInterrupted()) {
+        while (!Thread.currentThread().isInterrupted()) {
+
             System.out.println("Add" + "->" + obj);
             listOfElements.add(obj);
+
         }
     }
 }
