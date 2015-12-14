@@ -1,7 +1,7 @@
 package timeouthashtable;
 
 /**
- * Created by clouway on 14.12.15.
+ * @author Ivaylo Penev(ipenev91@gmail.com)
  */
 public class App {
 
