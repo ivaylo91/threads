@@ -14,14 +14,25 @@ public class App {
         timeoutHashTable.put("Pesho", "Sofia");
         timeoutHashTable.put("Nikola", "General Toshevo");
 
-
+        Thread.sleep(600);
         System.out.println(timeoutHashTable.get("Pesho"));
         timeoutHashTable.put("Nikola", "Pomorie");
 
-        System.out.println(timeoutHashTable.get("4i4o Gosho"));
-        timeoutHashTable.put("Bai Ivan", "Lovnidol");
+        Thread.sleep(600);
 
-        System.out.println(timeoutHashTable.get("Bai Ivan"));
+        System.out.println(timeoutHashTable.get("4i4o Gosho"));
+        timeoutHashTable.put("Nikola", "Burgas");
+
+        timeoutHashTable.remove("4i4o Gosho");
+
+        Thread.sleep(300);
+
+        System.out.println("----------------------------------");
+
+        System.out.println("HashTable after remove:");
+
+        timeoutHashTable.printAllElements();
+
 
     }
 }

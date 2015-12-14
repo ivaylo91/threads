@@ -8,10 +8,12 @@ import java.util.Map;
  */
 public class TimeoutRemover<String, Object> extends Thread {
 
+
     private Map<String, TimeoutRemover<String, Object>> table;
     private String key;
     private Object value;
     private long timeout;
+    private int counter;
 
 
     public TimeoutRemover(Map<String, TimeoutRemover<String, Object>> table, String key, Object value, long timeout) {
@@ -23,10 +25,10 @@ public class TimeoutRemover<String, Object> extends Thread {
 
     @Override
     public void run() {
-        while (true) {
+        while (counter < timeout) {
             try {
-                Thread.sleep(timeout);
-                break;
+                Thread.sleep(1000);
+                counter++;
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -38,6 +40,10 @@ public class TimeoutRemover<String, Object> extends Thread {
 
     public Object getValue() {
         return value;
+    }
+
+    public void resetCounter() {
+        this.counter = 0;
     }
 
 }
