@@ -20,6 +20,12 @@ public class TimeoutHashTable<String, Object> {
     }
 
     public void put(String key, Object value) {
+        if (timeoutHashTable.containsKey(key)) {
+            timeoutHashTable.get(key);
+            thread.resetCounter();
+
+            return;
+        }
         thread = new TimeoutRemover<>(timeoutHashTable, key, value, timeout);
         timeoutHashTable.put(key, thread);
         thread.start();
