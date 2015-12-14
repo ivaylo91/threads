@@ -10,7 +10,7 @@ public class TimeoutHashTable<String, Object> {
 
     private Map<String, TimeoutRemover<String, Object>> timeoutHashTable = new Hashtable<>();
     private long timeout;
-    TimeoutRemover<String, Object> thread;
+    private TimeoutRemover<String, Object> thread;
 
     public TimeoutHashTable(long timeout) {
         this.timeout = timeout;
@@ -18,7 +18,6 @@ public class TimeoutHashTable<String, Object> {
 
     public void put(String key, Object value) {
         thread = new TimeoutRemover<>(timeoutHashTable, key, value, timeout);
-        thread.start();
         timeoutHashTable.put(key, thread);
     }
 
