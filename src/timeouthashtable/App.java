@@ -14,11 +14,11 @@ public class App {
         timeoutHashTable.put("Pesho", "Sofia");
         timeoutHashTable.put("Nikola", "General Toshevo");
 
-        Thread.sleep(600);
+        Thread.sleep(300);
         System.out.println(timeoutHashTable.get("Pesho"));
         timeoutHashTable.put("Nikola", "Pomorie");
 
-        Thread.sleep(600);
+        Thread.sleep(300);
 
         System.out.println(timeoutHashTable.get("4i4o Gosho"));
         timeoutHashTable.put("Nikola", "Burgas");
