@@ -10,7 +10,7 @@ public class App {
 
         AddElement addElement = new AddElement(listOfElements, "Bai Tosho");
 
-        RemoveElement removeElement = new RemoveElement(listOfElements,"Bai Tosho");
+        RemoveElement removeElement = new RemoveElement(listOfElements, "Bai Tosho");
 
         addElement.start();
 
@@ -23,6 +23,5 @@ public class App {
         addElement.interrupt();
 
         removeElement.interrupt();
-
     }
 }
