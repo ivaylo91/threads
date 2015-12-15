@@ -6,17 +6,17 @@ import java.util.Map;
 /**
  * @author Ivaylo Penev(ipenev91@gmail.com)
  */
-public class TimeoutRemover<String, Object> extends Thread {
+public class TimeoutRemover<K, V> extends Thread {
 
 
-    private Map<String, TimeoutRemover<String, Object>> table;
-    private String key;
-    private Object value;
+    private Map<K, TimeoutRemover<K, V>> table;
+    private K key;
+    private V value;
     private long timeout;
     private int counter;
 
 
-    public TimeoutRemover(Map<String, TimeoutRemover<String, Object>> table, String key, Object value, long timeout) {
+    public TimeoutRemover(Map<K, TimeoutRemover<K, V>> table, K key, V value, long timeout) {
         this.table = table;
         this.key = key;
         this.timeout = timeout;

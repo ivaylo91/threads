@@ -1,7 +1,5 @@
 package timeouthashtable;
 
-import sun.jvm.hotspot.jdi.ThreadReferenceImpl;
-
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Map;
@@ -9,17 +7,17 @@ import java.util.Map;
 /**
  * @author Ivaylo Penev(ipenev91@gmail.com)
  */
-public class TimeoutHashTable<String, Object> {
+public class TimeoutHashTable<K, V> {
 
-    private Map<String, TimeoutRemover<String, Object>> timeoutHashTable = new Hashtable<>();
+    private Map<K, TimeoutRemover<K, V>> timeoutHashTable = new Hashtable<>();
     private long timeout;
-    private TimeoutRemover<String, Object> thread;
+    private TimeoutRemover<K,V> thread;
 
     public TimeoutHashTable(long timeout) {
         this.timeout = timeout;
     }
 
-    public void put(String key, Object value) {
+    public void put(K key, V value) {
         if (timeoutHashTable.containsKey(key)) {
             timeoutHashTable.get(key);
             thread.resetCounter();
@@ -31,7 +29,7 @@ public class TimeoutHashTable<String, Object> {
         thread.start();
     }
 
-    public Object get(String key) {
+    public Object get(K key) {
         if (!timeoutHashTable.containsKey(key)) {
             return null;
         } else {
@@ -40,7 +38,7 @@ public class TimeoutHashTable<String, Object> {
         }
     }
 
-    public Object remove(String key) {
+    public Object remove(K key) {
         if (!timeoutHashTable.containsKey(key)) {
             return null;
         }
