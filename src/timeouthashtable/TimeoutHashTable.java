@@ -29,7 +29,7 @@ public class TimeoutHashTable<K, V> {
         thread.start();
     }
 
-    public Object get(K key) {
+    public V get(K key) {
         if (!timeoutHashTable.containsKey(key)) {
             return null;
         } else {
@@ -38,7 +38,7 @@ public class TimeoutHashTable<K, V> {
         }
     }
 
-    public Object remove(K key) {
+    public V remove(K key) {
         if (!timeoutHashTable.containsKey(key)) {
             return null;
         }
